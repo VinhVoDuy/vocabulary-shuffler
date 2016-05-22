@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vocabulary Shuffler</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="container-fluid">
+    <br/>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-warning"><%= alert %></p>
+    <% end %>
+  </div>
+  <div class="container">
+    <% if current_user %>
+      <div class="user pull-right">
+        <div class="glyphicon glyphicon-user">
+          <%=current_user.email%>
+        </div> 
+        <br/>
+        <%= link_to 'Log Out', destroy_session_path(current_user), method: :delete, class: "btn btn-danger pull-right" %>
+      </div>
+      <div class="clearfix"></div>
+    <% end %>
+    <%= yield %>
+  </div>
+
+</body>
+</html>

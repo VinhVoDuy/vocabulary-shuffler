@@ -1,0 +1,38 @@
+<h1><%=@word_list.name%></h1>
+<small><%="#{time_ago_in_words(@word_list.created_at)} ago"%></small>
+
+<br/>
+<h3>Words</h3>
+<h4 id='current-word'></h4>
+
+<div class="act-btn btn btn-success" onClick="read(current_word());"> Listen </div>
+<div class="act-btn btn btn-warning" onClick="show(current_word());"> Show </div>
+<div class="act-btn btn btn-primary" onClick="next();"> Next </div>
+
+<script>
+var lists = <%=raw(@words.to_json)%>
+var current_index = 0;
+function read(text) {
+  var msg = new SpeechSynthesisUtterance(text);
+  window.speechSynthesis.speak(msg);
+}
+
+function current_word() {
+  return lists[current_index % lists.length];
+}
+
+
+function show(text) {
+  $('#current-word').html(text);
+  $('#current-word').show();
+}
+
+function hide_word() {
+  $('#current-word').hide();
+}
+
+function next(){
+  hide_word();
+  current_index++;
+}
+</script>

@@ -1,0 +1,17 @@
+<h1 class="text-center">New Words List</h1>
+<%= form_for @word_list do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :words %>
+    <span class="small">(1 word per line)</span>
+    <%=f.text_area :words_str, value: f.object.words.join("\r\n"), rows: 10, class: 'form-control'%>
+    <br/>
+    <div class="text-center">
+      <%= f.submit 'Create', class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>
+
