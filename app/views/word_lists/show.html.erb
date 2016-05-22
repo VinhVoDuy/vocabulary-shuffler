@@ -8,9 +8,11 @@
 <div class="act-btn btn btn-success" onClick="read(current_word());"> Listen </div>
 <div class="act-btn btn btn-warning" onClick="show(current_word());"> Show </div>
 <div class="act-btn btn btn-primary" onClick="next();"> Next </div>
+<div class="act-btn btn btn-info" onClick="next();"> Shuffle </div>
 
 <script>
 var lists = <%=raw(@words.to_json)%>
+shuffle(lists);
 var current_index = 0;
 function read(text) {
   var msg = new SpeechSynthesisUtterance(text);
@@ -34,5 +36,29 @@ function hide_word() {
 function next(){
   hide_word();
   current_index++;
+}
+
+function shuffle(){
+  shuffle(lists);
+  hide_word();
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 </script>
