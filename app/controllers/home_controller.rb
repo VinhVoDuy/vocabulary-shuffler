@@ -7,4 +7,5 @@ class HomeController < ApplicationController
   def new
     @word_list = WordList.new(name: Time.zone.now.to_formatted_s(:long))
   end
+
 end
