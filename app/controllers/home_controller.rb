@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
   def index
-    @word_lists = WordList.order(created_at: :desc)
+    @word_lists = current_user.word_lists.order(created_at: :desc)
   end
 
   def new

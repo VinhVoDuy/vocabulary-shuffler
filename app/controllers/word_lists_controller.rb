@@ -5,7 +5,7 @@ class WordListsController < ApplicationController
   end
 
   def show
-    @word_list = WordList.find(params[:id])
+    @word_list = current_user.word_lists.find(params[:id])
     @words = @word_list.words
   end
 
